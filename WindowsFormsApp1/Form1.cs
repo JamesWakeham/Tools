@@ -39,7 +39,9 @@ namespace WindowsFormsApp1
 
         public void CompareSoTs(List<CardData> oldSoT, List<CardData> newSoT)
         {
-            textBox1.AppendText("sot length difference: " + (oldSoT.Count - newSoT.Count) + System.Environment.NewLine);
+            if((oldSoT.Count - newSoT.Count) != 0)
+                textBox1.AppendText("sot length difference: " + (oldSoT.Count - newSoT.Count) + System.Environment.NewLine);
+
             for (int i = 0; i < oldSoT.Count; i++)
             {
                 bool healthDiff = false;
@@ -135,7 +137,5 @@ namespace WindowsFormsApp1
         {
 
         }
-
-
     }
 }
