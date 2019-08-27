@@ -16,7 +16,7 @@ namespace WindowsFormsApp1
         public struct CardData
         {
             public string name;
-            public int strength, health;
+            public int mana, strength, health;
         }
 
         public List<CardData> oldCardDatas = new List<CardData>();
@@ -44,6 +44,7 @@ namespace WindowsFormsApp1
             {
                 bool healthDiff = false;
                 bool strDiff = false;
+                bool manaDiff = false;
                 if (oldSoT[i].health != newSoT[i].health)
                 {
                     healthDiff = true;
@@ -52,11 +53,18 @@ namespace WindowsFormsApp1
                 {
                     strDiff = true;
                 }
+                if (oldSoT[i].mana != newSoT[i].mana)
+                {
+                    manaDiff = true;
+                }
 
-                if(healthDiff || strDiff)
+                if (healthDiff || strDiff || manaDiff)
                 {
                     textBox1.AppendText(oldSoT[i].name + System.Environment.NewLine);
-                    textBox1.AppendText(oldSoT[i].strength + "/" + oldSoT[i].health + " to " + newSoT[i].strength + "/" + newSoT[i].health + System.Environment.NewLine);
+                    if (manaDiff)
+                        textBox1.AppendText("Mana cost changed from " + oldSoT[i].mana + " to " + newSoT[i].mana + System.Environment.NewLine);
+                    if (healthDiff || strDiff)
+                        textBox1.AppendText("Stats changed from " + oldSoT[i].strength + "/" + oldSoT[i].health + " to " + newSoT[i].strength + "/" + newSoT[i].health + System.Environment.NewLine);
                 }
             }
         }
@@ -89,6 +97,14 @@ namespace WindowsFormsApp1
                                         tempCardData.Add(currentCardData);
                                     }
 
+                                }
+                                break;
+                                
+                            case "Mana":
+                                if (reader.Read())
+                                {
+                                    int.TryParse(reader.Value.Trim(), out currentCardData.mana);
+                                    
                                 }
                                 break;
 
