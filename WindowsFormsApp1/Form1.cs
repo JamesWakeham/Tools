@@ -62,11 +62,14 @@ namespace WindowsFormsApp1
 
                 if (healthDiff || strDiff || manaDiff)
                 {
-                    textBox1.AppendText(oldSoT[i].name + System.Environment.NewLine);
+                    textBox1.AppendText(oldSoT[i].name + " - ");
                     if (manaDiff)
-                        textBox1.AppendText("Mana cost changed from " + oldSoT[i].mana + " to " + newSoT[i].mana + System.Environment.NewLine);
+                        textBox1.AppendText("Mana cost changed from " + oldSoT[i].mana + " to " + newSoT[i].mana );
+                    if(manaDiff && healthDiff)
+                        textBox1.AppendText(". ");
                     if (healthDiff || strDiff)
-                        textBox1.AppendText("Stats changed from " + oldSoT[i].strength + "/" + oldSoT[i].health + " to " + newSoT[i].strength + "/" + newSoT[i].health + System.Environment.NewLine);
+                        textBox1.AppendText("Stats changed from " + oldSoT[i].strength + "/" + oldSoT[i].health + " to " + newSoT[i].strength + "/" + newSoT[i].health);
+                    textBox1.AppendText("." + System.Environment.NewLine);
                 }
             }
         }
